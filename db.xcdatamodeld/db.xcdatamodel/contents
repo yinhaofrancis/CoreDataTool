@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
+    <entity name="Article" representedClassName=".Artical" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="pics" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="own" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="hasArtical" inverseEntity="User" syncable="YES"/>
+        <relationship name="someComment" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="own" inverseEntity="Comment" syncable="YES"/>
+    </entity>
+    <entity name="Comment" representedClassName=".Comment" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="updateAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="from" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="hasComment" inverseEntity="User" syncable="YES"/>
+        <relationship name="own" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="someComment" inverseEntity="Article" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hasArtical" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Article" inverseName="own" inverseEntity="Article" syncable="YES"/>
+        <relationship name="hasComment" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="from" inverseEntity="Comment" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Article" positionX="-90" positionY="-198" width="128" height="150"/>
+        <element name="Comment" positionX="270" positionY="-468" width="128" height="118"/>
+        <element name="User" positionX="99" positionY="-729" width="128" height="120"/>
+    </elements>
+</model>
